@@ -172,6 +172,11 @@ msr::airlib::Pose RpcLibClientBase::simGetObjectPose(const std::string& object_n
     return pimpl_->client.call("simGetObjectPose", object_name).as<RpcLibAdapatorsBase::Pose>().to();
 }
 
+msr::airlib::Pose RpcLibClientBase::simGetProjection(const std::string& object_name)
+{
+	return pimpl_->client.call("simGetProjection", object_name).as<RpcLibAdapatorsBase::Pose>().to();
+}
+
 
 }} //namespace
 

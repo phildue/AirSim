@@ -81,6 +81,7 @@ public: //interface
     const WrapperConfig& getConfig() const;
 
     msr::airlib::Pose getActorPose(std::string actor_name);
+	msr::airlib::Pose getProjection(std::string actor_name);
     std::string getVehicleConfigName() const;
 
     int getRemoteControlID() const;

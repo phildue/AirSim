@@ -82,6 +82,17 @@ msr::airlib::Pose CarPawnApi::simGetObjectPose(const std::string& actor_name)
     return pose;
 }
 
+msr::airlib::Pose CarPawnApi::simGetObjectPose(const std::string& actor_name)
+{
+	msr::airlib::Pose pose;
+
+	UAirBlueprintLib::RunCommandOnGameThread([&pose, &actor_name, this]() {
+		pose = pawn_->getProjection(actor_name);
+	}, true);
+
+	return pose;
+}
+
 const CarApiBase::CarControls& CarPawnApi::getCarControls() const
 {
     return last_controls_;

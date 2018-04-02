@@ -121,6 +121,11 @@ RpcLibServerBase::RpcLibServerBase(VehicleApiBase* vehicle, string server_addres
         const auto& pose = vehicle_->simGetObjectPose(object_name); 
         return RpcLibAdapatorsBase::Pose(pose);
     });
+
+	pimpl_->server.bind("simGetProjection", [&](const std::string& object_name) -> RpcLibAdapatorsBase::Pose {
+		const auto& pose = vehicle_->simGetProjection(object_name);
+		return RpcLibAdapatorsBase::Pose(pose);
+	});
     
     pimpl_->server.suppress_exceptions(true);
 }

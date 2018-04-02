@@ -94,6 +94,12 @@ public:
         return msr::airlib::Pose();
     }
 
+	virtual Pose getProjection(const std::string& actor_name) override
+	{
+		unused(actor_name);
+		return msr::airlib::Pose();
+	}
+
     virtual CameraInfo getCameraInfo(int camera_id) const override
     {
         unused(camera_id);

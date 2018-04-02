@@ -8,6 +8,7 @@
 #include "common/AirSimSettings.hpp"
 #include "NedTransform.h"
 #include "common/EarthUtils.hpp"
+#include "../../../../AirLib/include/controllers/PidController.hpp"
 
 VehiclePawnWrapper::VehiclePawnWrapper()
 {
@@ -375,6 +376,40 @@ msr::airlib::Pose VehiclePawnWrapper::getActorPose(std::string actor_name)
     AActor* actor = UAirBlueprintLib::FindActor<AActor>(pawn_, FString(actor_name.c_str()));
     return actor ? toPose(actor->GetActorLocation(), actor->GetActorQuat())
         : Pose::nanPose();
+}
+
+msr::airlib::Pose VehiclePawnWrapper::getProjection(std::string actor_name)
+{
+	/*
+	FVector2D retVal = FVector2D::ZeroVector;
+	AActor* actor = UAirBlueprintLib::FindActor<AActor>(pawn_, FString(actor_name.c_str()));
+
+	if (actor)
+	{
+		ULocalPlayer* player = actor->GetWorld()->GetFirstLocalPlayerFromController();
+		if (player && player->ViewportClient && player->ViewportClient->Viewport != NULL && player->PlayerController)
+		{
+			FSceneViewProjectionData ProjectionData;
+			if (Player->GetProjectionData(Player->ViewportClient->Viewport, eSSP_FULL, ProjectionData))
+			{	
+				FMatrix viewProjectionMatrix = ProjectionData.ViewMatrix * ProjectionData.ProjectionMatrix;
+				FIntRect theViewRect = ProjectionData.GetViewRect();
+
+				FPlane Result = viewProjectionMatrix.TransformFVector4(FVector4(WorldPosition, 1));
+
+				retVal.X = (int)((((1 + (Result.X / Result.W)) / 2.f) * theViewRect.Width()) + 0.5f);
+				retVal.Y = (int)((((1 - (Result.Y / Result.W)) / 2.f) * theViewRect.Height()) + 0.5f);
+			}
+		}
+	}
+	msr::airlib::Pose pose = msr::airlib::Pose();
+	pose.position[0] = retVal.X;
+	pose.position[1] = retVal.Y;
+	*/
+	pose.position[0] = 1.0;
+	pose.position[1] = 2.0;
+	pose.position[2] = 3.0;
+	return pose;
 }
 
 

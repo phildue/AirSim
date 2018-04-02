@@ -66,6 +66,7 @@ public:
 
     virtual void printLogMessage(const std::string& message, std::string message_param = "", unsigned char severity = 0) override;
     virtual Pose getActorPose(const std::string& actor_name) override;
+	virtual Pose getProjection(const std::string& actor_name) override;
     virtual CameraInfo getCameraInfo(int camera_id) const override;
     virtual void setCameraOrientation(int camera_id, const Quaternionr& orientation) override;
 
